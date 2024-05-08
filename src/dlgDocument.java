@@ -1,4 +1,6 @@
 import java.util.List;
+import org.json.JSONObject;
+import java.util.stream.Collectors;
 
 public class dlgDocument extends Document {
 
@@ -29,8 +31,169 @@ public class dlgDocument extends Document {
     private List<String> iiif_manifest_url_ss;
     private List<String> fulltext;
 
-    public dlgDocument(String id, String title, List<String> description, List<String> subject, List<String> type) {
+    public dlgDocument(
+            String id,
+            String title,
+            List<String> description,
+            List<String> subject,
+            List<String> type,
+            String collection_id,
+            String collection_title,
+            List<String> dcterms_contributor,
+            List<String> dcterms_spatial,
+            List<String> dcterms_creator,
+            List<String> dc_date,
+            List<String> dc_format,
+            List<String> dcterms_identifier,
+            List<String> dcterms_language,
+            List<String> dcterms_publisher,
+            List<String> dc_relation,
+            List<String> dc_right,
+            List<String> dcterms_is_part_of,
+            List<String> dcterms_title,
+            List<String> dcterms_provenance,
+            List<String> edm_is_shown_by,
+            List<String> edm_is_shown_at,
+            List<String> dcterms_temporal,
+            List<String> dcterms_rights_holder,
+            List<String> dcterms_bibliographic_citation,
+            List<String> dlg_local_right,
+            List<String> dcterms_medium,
+            List<String> dcterms_extent,
+            List<String> dlg_subject_personal,
+            List<String> iiif_manifest_url_ss,
+            List<String> fulltext) {
         super(id, title, description, subject, type);
+        this.collection_id = collection_id;
+        this.collection_title = collection_title;
+        this.dcterms_contributor = dcterms_contributor;
+        this.dcterms_spatial = dcterms_spatial;
+        this.dcterms_creator = dcterms_creator;
+        this.dc_date = dc_date;
+        this.dc_format = dc_format;
+        this.dcterms_identifier = dcterms_identifier;
+        this.dcterms_language = dcterms_language;
+        this.dcterms_publisher = dcterms_publisher;
+        this.dc_relation = dc_relation;
+        this.dc_right = dc_right;
+        this.dcterms_is_part_of = dcterms_is_part_of;
+        this.dcterms_title = dcterms_title;
+        this.dcterms_provenance = dcterms_provenance;
+        this.edm_is_shown_by = edm_is_shown_by;
+        this.edm_is_shown_at = edm_is_shown_at;
+        this.dcterms_temporal = dcterms_temporal;
+        this.dcterms_rights_holder = dcterms_rights_holder;
+        this.dcterms_bibliographic_citation = dcterms_bibliographic_citation;
+        this.dlg_local_right = dlg_local_right;
+        this.dcterms_medium = dcterms_medium;
+        this.dcterms_extent = dcterms_extent;
+        this.dlg_subject_personal = dlg_subject_personal;
+        this.iiif_manifest_url_ss = iiif_manifest_url_ss;
+        this.fulltext = fulltext;
+
+    }
+
+    public dlgDocument(JSONObject record) {
+        super(
+                record.getString("id"),
+                record.getString("title"),
+                record.has("description") ? record.getJSONArray("description").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList()) : null,
+                record.has("subject")
+                        ? record.getJSONArray("subject").toList().stream().map(Object::toString)
+                                .collect(Collectors.toList())
+                        : null,
+                record.has("type")
+                        ? record.getJSONArray("type").toList().stream().map(Object::toString)
+                                .collect(Collectors.toList())
+                        : null);
+        // ...
+        this.collection_id = record.has("collection_id") ? record.getString("collection_id") : null;
+        this.collection_title = record.has("collection_title") ? record.getString("collection_title") : null;
+        this.dcterms_contributor = record.has("dcterms_contributor") ? record.getJSONArray("dcterms_contributor")
+                .toList().stream().map(Object::toString).collect(Collectors.toList()) : null;
+        this.dcterms_spatial = record.has("dcterms_spatial")
+                ? record.getJSONArray("dcterms_spatial").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_creator = record.has("dcterms_creator")
+                ? record.getJSONArray("dcterms_creator").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dc_date = record.has("dc_date")
+                ? record.getJSONArray("dc_date").toList().stream().map(Object::toString).collect(Collectors.toList())
+                : null;
+        this.dc_format = record.has("dc_format")
+                ? record.getJSONArray("dc_format").toList().stream().map(Object::toString).collect(Collectors.toList())
+                : null;
+        this.dcterms_identifier = record.has("dcterms_identifier")
+                ? record.getJSONArray("dcterms_identifier").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_language = record.has("dcterms_language")
+                ? record.getJSONArray("dcterms_language").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_publisher = record.has("dcterms_publisher")
+                ? record.getJSONArray("dcterms_publisher").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dc_relation = record.has("dc_relation")
+                ? record.getJSONArray("dc_relation").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dc_right = record.has("dc_right")
+                ? record.getJSONArray("dc_right").toList().stream().map(Object::toString).collect(Collectors.toList())
+                : null;
+        this.dcterms_is_part_of = record.has("dcterms_is_part_of")
+                ? record.getJSONArray("dcterms_is_part_of").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_title = record.has("dcterms_title")
+                ? record.getJSONArray("dcterms_title").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_provenance = record.has("dcterms_provenance")
+                ? record.getJSONArray("dcterms_provenance").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.edm_is_shown_by = record.has("edm_is_shown_by")
+                ? record.getJSONArray("edm_is_shown_by").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.edm_is_shown_at = record.has("edm_is_shown_at")
+                ? record.getJSONArray("edm_is_shown_at").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_temporal = record.has("dcterms_temporal")
+                ? record.getJSONArray("dcterms_temporal").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_rights_holder = record.has("dcterms_rights_holder") ? record.getJSONArray("dcterms_rights_holder")
+                .toList().stream().map(Object::toString).collect(Collectors.toList()) : null;
+        this.dcterms_bibliographic_citation = record.has("dcterms_bibliographic_citation")
+                ? record.getJSONArray("dcterms_bibliographic_citation").toList().stream().map(Object::toString).collect(
+                        Collectors.toList())
+                : null;
+        this.dlg_local_right = record.has("dlg_local_right")
+                ? record.getJSONArray("dlg_local_right").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_medium = record.has("dcterms_medium")
+                ? record.getJSONArray("dcterms_medium").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dcterms_extent = record.has("dcterms_extent")
+                ? record.getJSONArray("dcterms_extent").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : null;
+        this.dlg_subject_personal = record.has("dlg_subject_personal") ? record.getJSONArray("dlg_subject_personal")
+                .toList().stream().map(Object::toString).collect(Collectors.toList()) : null;
+        this.iiif_manifest_url_ss = record.has("iiif_manifest_url_ss") ? record.getJSONArray("iiif_manifest_url_ss")
+                .toList().stream().map(Object::toString).collect(Collectors.toList()) : null;
+        this.fulltext = record.has("fulltext")
+                ? record.getJSONArray("fulltext").toList().stream().map(Object::toString).collect(Collectors.toList())
+                : null;
     }
 
     // Generate getters and setters for each field
@@ -241,5 +404,38 @@ public class dlgDocument extends Document {
 
     public void setFulltext(List<String> fulltext) {
         this.fulltext = fulltext;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "dlgDocument{" +
+                "collection_id='" + collection_id + '\'' +
+                ", collection_title='" + collection_title + '\'' +
+                ", dcterms_contributor=" + dcterms_contributor +
+                ", dcterms_spatial=" + dcterms_spatial +
+                ", dcterms_creator=" + dcterms_creator +
+                ", dc_date=" + dc_date +
+                ", dc_format=" + dc_format +
+                ", dcterms_identifier=" + dcterms_identifier +
+                ", dcterms_language=" + dcterms_language +
+                ", dcterms_publisher=" + dcterms_publisher +
+                ", dc_relation=" + dc_relation +
+                ", dc_right=" + dc_right +
+                ", dcterms_is_part_of=" + dcterms_is_part_of +
+                ", dcterms_title=" + dcterms_title +
+                ", dcterms_provenance=" + dcterms_provenance +
+                ", edm_is_shown_by=" + edm_is_shown_by +
+                ", edm_is_shown_at=" + edm_is_shown_at +
+                ", dcterms_temporal=" + dcterms_temporal +
+                ", dcterms_rights_holder=" + dcterms_rights_holder +
+                ", dcterms_bibliographic_citation=" + dcterms_bibliographic_citation +
+                ", dlg_local_right=" + dlg_local_right +
+                ", dcterms_medium=" + dcterms_medium +
+                ", dcterms_extent=" + dcterms_extent +
+                ", dlg_subject_personal=" + dlg_subject_personal +
+                ", iiif_manifest_url_ss=" + iiif_manifest_url_ss +
+                ", fulltext=" + fulltext +
+                '}';
     }
 }
