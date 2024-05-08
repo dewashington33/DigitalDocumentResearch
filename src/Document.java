@@ -55,4 +55,10 @@ public class Document {
     public void setType(List<String> type) {
         this.type = type;
     }
+
+    // tostring method
+    public String toString() {
+        return "Document{" + "id='" + id + '\'' + ", title='" + title + '\'' + ", description=" + description
+                + ", subject=" + subject + ", type=" + type + '}';
+    }
 }

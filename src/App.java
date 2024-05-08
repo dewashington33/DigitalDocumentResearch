@@ -14,41 +14,12 @@ public class App {
         // System.out.println(documents.size());
         for (dlgDocument document : documents) {
             // System.out.println("is this before the blank");
-            // System.out.println(document.getDcterms_title());
+            // System.out.println("Title: " + document.getTitle());
+            // System.out.println("Contributor: " + document.getDcterms_contributor());
+            // System.out.println("Spatial: " + document.getDcterms_spatial());
+            document.toString();
         }
 
-        // dlgDocument doc = new dlgDocument(
-        // "dlg_sgan_hhj1873-0101",
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null,
-        // null);
     }
 
 }

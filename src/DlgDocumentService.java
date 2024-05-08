@@ -34,7 +34,7 @@ public class DlgDocumentService {
             JSONObject record = records.getJSONObject(i);
             System.out.println(record + "\n");
             // Assuming dlgDocument has a constructor that takes a JSONObject
-            // documents.add(new dlgDocument(record));
+            documents.add(new dlgDocument(record));
             // System.out.println("Record: " + record);
         }
 

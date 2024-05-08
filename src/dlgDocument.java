@@ -1,3 +1,31 @@
+// This class extends the Document class and adds additional fields specific to the Digital Library of Georgia
+// (DLG) data model.
+
+// The constructor can take a JSONObject as an argument and extract the values for each field from the object.
+
+// The class is used to represent individual documents retrieved from the DLG API.
+// The fields in the class correspond to the fields in the JSON response from the DLG API.
+// The class is used in the App class to display information about the documents retrieved from the DLG API.
+// The DlgDocumentService class is used to fetch documents from the DLG API and convert them into instances of the dlgDocument class.
+// The DlgDocumentService class uses the HttpClient class to make HTTP requests to the DLG API and retrieve JSON responses.
+// The fetchDocuments method in the DlgDocumentService class constructs the URL for the API request, sends the request, and processes the response.
+// The method then extracts the individual document records from the JSON response and creates instances of the dlgDocument class for each record.
+// The method returns a list of dlgDocument instances that can be used to display information about the documents.
+// The App class uses the DlgDocumentService class to fetch documents from the DLG API and display information about the documents.
+// The App class creates an instance of the DlgDocumentService class and calls the fetchDocuments method to retrieve documents.
+// The App class then iterates over the list of documents and prints out information about each document, such as the title, contributor, and spatial information.
+// The App class demonstrates how to use the DlgDocumentService class to interact
+// with the DLG API and retrieve information about documents from the Digital Library of Georgia.
+// The App class can be run as a standalone Java application to fetch and display information about documents from the DLG API.
+// The App class can be extended to include additional functionality for interacting with the DLG API and processing the document data.
+// The DlgDocumentService class provides a convenient way to fetch documents from the DLG API and convert them into instances of the dlgDocument class.
+// The dlgDocument class encapsulates the data model for individual documents from the DLG API and provides methods for accessing and displaying the document information.
+// The dlgDocument class can be extended to include additional fields and methods for working with the document data from the DLG API.
+// The DlgDocumentService class can be extended to include additional methods for fetching and processing documents from the DLG API.
+// The App class provides an example of how to use the DlgDocumentService class to fetch and display information about documents from the DLG API.
+// The App class can be modified and extended to include additional functionality for working with the DLG API and processing the document data.
+
+import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONObject;
 import java.util.stream.Collectors;
@@ -93,6 +121,9 @@ public class dlgDocument extends Document {
 
     }
 
+    // Overloaded Constructor that takes a JSONObject as an argument and extracts
+    // the values for each field from the object.
+
     public dlgDocument(JSONObject record) {
         super(
                 record.getString("id"),
@@ -110,90 +141,98 @@ public class dlgDocument extends Document {
         // ...
         this.collection_id = record.has("collection_id") ? record.getString("collection_id") : null;
         this.collection_title = record.has("collection_title") ? record.getString("collection_title") : null;
-        this.dcterms_contributor = record.has("dcterms_contributor") ? record.getJSONArray("dcterms_contributor")
-                .toList().stream().map(Object::toString).collect(Collectors.toList()) : null;
-        this.dcterms_spatial = record.has("dcterms_spatial")
+        this.dcterms_contributor = record.optJSONArray("dcterms_contributor") != null
+                ? record.getJSONArray("dcterms_contributor").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : new ArrayList<>();
+        this.dcterms_spatial = record.optJSONArray("dcterms_spatial") != null
                 ? record.getJSONArray("dcterms_spatial").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_creator = record.has("dcterms_creator")
+                : new ArrayList<>();
+        this.dcterms_creator = record.optJSONArray("dcterms_creator") != null
                 ? record.getJSONArray("dcterms_creator").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dc_date = record.has("dc_date")
+                : new ArrayList<>();
+        this.dc_date = record.optJSONArray("dc_date") != null
                 ? record.getJSONArray("dc_date").toList().stream().map(Object::toString).collect(Collectors.toList())
-                : null;
-        this.dc_format = record.has("dc_format")
+                : new ArrayList<>();
+        this.dc_format = record.optJSONArray("dc_format") != null
                 ? record.getJSONArray("dc_format").toList().stream().map(Object::toString).collect(Collectors.toList())
-                : null;
-        this.dcterms_identifier = record.has("dcterms_identifier")
+                : new ArrayList<>();
+        this.dcterms_identifier = record.optJSONArray("dcterms_identifier") != null
                 ? record.getJSONArray("dcterms_identifier").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_language = record.has("dcterms_language")
+                : new ArrayList<>();
+        this.dcterms_language = record.optJSONArray("dcterms_language") != null
                 ? record.getJSONArray("dcterms_language").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_publisher = record.has("dcterms_publisher")
+                : new ArrayList<>();
+        this.dcterms_publisher = record.optJSONArray("dcterms_publisher") != null
                 ? record.getJSONArray("dcterms_publisher").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dc_relation = record.has("dc_relation")
+                : new ArrayList<>();
+        this.dc_relation = record.optJSONArray("dc_relation") != null
                 ? record.getJSONArray("dc_relation").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dc_right = record.has("dc_right")
+                : new ArrayList<>();
+        this.dc_right = record.optJSONArray("dc_right") != null
                 ? record.getJSONArray("dc_right").toList().stream().map(Object::toString).collect(Collectors.toList())
-                : null;
-        this.dcterms_is_part_of = record.has("dcterms_is_part_of")
+                : new ArrayList<>();
+        this.dcterms_is_part_of = record.optJSONArray("dcterms_is_part_of") != null
                 ? record.getJSONArray("dcterms_is_part_of").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_title = record.has("dcterms_title")
+                : new ArrayList<>();
+        this.dcterms_title = record.optJSONArray("dcterms_title") != null
                 ? record.getJSONArray("dcterms_title").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_provenance = record.has("dcterms_provenance")
+                : new ArrayList<>();
+        this.dcterms_provenance = record.optJSONArray("dcterms_provenance") != null
                 ? record.getJSONArray("dcterms_provenance").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.edm_is_shown_by = record.has("edm_is_shown_by")
+                : new ArrayList<>();
+        this.edm_is_shown_by = record.optJSONArray("edm_is_shown_by") != null
                 ? record.getJSONArray("edm_is_shown_by").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.edm_is_shown_at = record.has("edm_is_shown_at")
+                : new ArrayList<>();
+        this.edm_is_shown_at = record.optJSONArray("edm_is_shown_at") != null
                 ? record.getJSONArray("edm_is_shown_at").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_temporal = record.has("dcterms_temporal")
+                : new ArrayList<>();
+        this.dcterms_temporal = record.optJSONArray("dcterms_temporal") != null
                 ? record.getJSONArray("dcterms_temporal").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_rights_holder = record.has("dcterms_rights_holder") ? record.getJSONArray("dcterms_rights_holder")
-                .toList().stream().map(Object::toString).collect(Collectors.toList()) : null;
-        this.dcterms_bibliographic_citation = record.has("dcterms_bibliographic_citation")
-                ? record.getJSONArray("dcterms_bibliographic_citation").toList().stream().map(Object::toString).collect(
-                        Collectors.toList())
-                : null;
-        this.dlg_local_right = record.has("dlg_local_right")
+                : new ArrayList<>();
+        this.dcterms_rights_holder = record.optJSONArray("dcterms_rights_holder") != null
+                ? record.getJSONArray("dcterms_rights_holder").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : new ArrayList<>();
+        this.dcterms_bibliographic_citation = record.optJSONArray("dcterms_bibliographic_citation") != null
+                ? record.getJSONArray("dcterms_bibliographic_citation").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : new ArrayList<>();
+        this.dlg_local_right = record.optJSONArray("dlg_local_right") != null
                 ? record.getJSONArray("dlg_local_right").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_medium = record.has("dcterms_medium")
+                : new ArrayList<>();
+        this.dcterms_medium = record.optJSONArray("dcterms_medium") != null
                 ? record.getJSONArray("dcterms_medium").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dcterms_extent = record.has("dcterms_extent")
+                : new ArrayList<>();
+        this.dcterms_extent = record.optJSONArray("dcterms_extent") != null
                 ? record.getJSONArray("dcterms_extent").toList().stream().map(Object::toString)
                         .collect(Collectors.toList())
-                : null;
-        this.dlg_subject_personal = record.has("dlg_subject_personal") ? record.getJSONArray("dlg_subject_personal")
-                .toList().stream().map(Object::toString).collect(Collectors.toList()) : null;
-        this.iiif_manifest_url_ss = record.has("iiif_manifest_url_ss") ? record.getJSONArray("iiif_manifest_url_ss")
-                .toList().stream().map(Object::toString).collect(Collectors.toList()) : null;
-        this.fulltext = record.has("fulltext")
+                : new ArrayList<>();
+        this.dlg_subject_personal = record.optJSONArray("dlg_subject_personal") != null
+                ? record.getJSONArray("dlg_subject_personal").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : new ArrayList<>();
+        this.iiif_manifest_url_ss = record.optJSONArray("iiif_manifest_url_ss") != null
+                ? record.getJSONArray("iiif_manifest_url_ss").toList().stream().map(Object::toString)
+                        .collect(Collectors.toList())
+                : new ArrayList<>();
+        this.fulltext = record.optJSONArray("fulltext") != null
                 ? record.getJSONArray("fulltext").toList().stream().map(Object::toString).collect(Collectors.toList())
-                : null;
+                : new ArrayList<>();
     }
 
     // Generate getters and setters for each field
@@ -410,6 +449,7 @@ public class dlgDocument extends Document {
     @Override
     public String toString() {
         return "dlgDocument{" +
+                "title='" + getTitle() + '\'' +
                 "collection_id='" + collection_id + '\'' +
                 ", collection_title='" + collection_title + '\'' +
                 ", dcterms_contributor=" + dcterms_contributor +
