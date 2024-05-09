@@ -17,7 +17,7 @@ public class App {
             // System.out.println("Title: " + document.getTitle());
             // System.out.println("Contributor: " + document.getDcterms_contributor());
             // System.out.println("Spatial: " + document.getDcterms_spatial());
-            document.toString();
+            System.out.println(document.toString());
         }
 
     }

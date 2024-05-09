@@ -29,10 +29,10 @@ public class DlgDocumentService {
         JSONArray records = json.getJSONObject("response").getJSONArray("docs");
 
         List<dlgDocument> documents = new ArrayList<>();
-        System.out.println(documents.size());
+        // System.out.println(documents.size());
         for (int i = 0; i < records.length(); i++) {
             JSONObject record = records.getJSONObject(i);
-            System.out.println(record + "\n");
+            // System.out.println(record + "\n");
             // Assuming dlgDocument has a constructor that takes a JSONObject
             documents.add(new dlgDocument(record));
             // System.out.println("Record: " + record);
