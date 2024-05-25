@@ -1,3 +1,18 @@
+// This class is responsible for fetching documents from the Digital Library of Georgia API.
+// The fetchDocuments method takes a county name, page number, and sort order as arguments and returns a list of dlgDocument objects.
+// The fetchDocuments method constructs a URI for the Digital Library of Georgia API using the provided parameters.
+// The fetchDocuments method sends an HTTP GET request to the Digital Library of Georgia API using the constructed URI.
+// The fetchDocuments method parses the JSON response from the Digital Library of Georgia API and creates dlgDocument objects from the response.
+// The fetchDocuments method returns a list of dlgDocument objects.
+// The DlgDocumentService class uses the HttpClient class from the java.net.http package to send HTTP requests to the Digital Library of Georgia API.
+// The DlgDocumentService class uses the JSONObject and JSONArray classes from the org.json package to parse JSON responses from the Digital Library of Georgia API.
+// The DlgDocumentService class provides a fetchDocuments method that fetches documents from the Digital Library of Georgia API based on county name, page number, and sort order.
+// The DlgDocumentService class provides a constructor that initializes an instance of the HttpClient class.
+// The DlgDocumentService class provides a fetchDocuments method that sends an HTTP GET request to the Digital Library of Georgia API and returns a list of dlgDocument objects.
+// The DlgDocumentService class constructs a URI for the Digital Library of Georgia API based on the provided county name, page number, and sort order.
+// The DlgDocumentService class parses the JSON response from the Digital Library of Georgia API and creates dlgDocument objects from the response.
+// The DlgDocumentService class uses the JSONObject and JSONArray classes to parse JSON responses from the Digital Library of Georgia API.
+
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;

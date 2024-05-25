@@ -1,6 +1,6 @@
 // This class extends the Document class and adds additional fields specific to the Digital Library of Georgia
 // (DLG) data model.
-
+// The org.json Library is located at https://mvnrepository.com/artifact/org.json/json
 // The constructor can take a JSONObject as an argument and extract the values for each field from the object.
 
 // The class is used to represent individual documents retrieved from the DLG API.
